@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0F172A;
+    color: #F9FAFB;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.7);
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+  }
+
+  .glass-card-hover {
+    transition: all 0.2s ease;
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2 hover:shadow-glow;
+  }
+
+  .btn-secondary {
+    @apply bg-white/5 hover:bg-white/10 text-text-primary border border-white/10 hover:border-primary/40 font-medium px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2;
+  }
+
+  .btn-danger {
+    @apply bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 hover:border-red-500/40 font-medium px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2;
+  }
+
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10 focus:border-primary/60 rounded-lg px-3 py-2.5 text-text-primary placeholder-text-secondary outline-none transition-all duration-200 focus:ring-1 focus:ring-primary/30;
+  }
+
+  .label {
+    @apply text-sm font-medium text-text-secondary mb-1.5 block;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all duration-200 text-text-secondary hover:text-text-primary hover:bg-white/5;
+  }
+
+  .sidebar-item-active {
+    @apply bg-primary/15 text-primary border-r-2 border-primary;
+  }
+
+  .stat-card {
+    @apply glass-card p-5 flex flex-col gap-3;
+  }
+
+  /* React Grid Layout custom styles */
+  .react-grid-layout {
+    position: relative;
+  }
+
+  .react-grid-item {
+    transition: all 200ms ease;
+    transition-property: left, top, width, height;
+  }
+
+  .react-grid-item.cssTransforms {
+    transition-property: transform, width, height;
+  }
+
+  .react-grid-item.resizing {
+    transition: none;
+    z-index: 10;
+    opacity: 0.9;
+  }
+
+  .react-grid-item.react-draggable-dragging {
+    transition: none;
+    z-index: 20;
+    opacity: 0.85;
+    cursor: grabbing !important;
+  }
+
+  .react-grid-item.react-grid-placeholder {
+    background: rgba(99, 102, 241, 0.15);
+    border: 2px dashed rgba(99, 102, 241, 0.5);
+    border-radius: 12px;
+    opacity: 0.7;
+    transition-duration: 100ms;
+    z-index: 2;
+  }
+
+  .react-resizable-handle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100 !important;
+  }
+
+  .react-grid-item:hover .react-resizable-handle {
+    opacity: 1;
+  }
+
+  .react-resizable-handle::after {
+    content: '';
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid rgba(99, 102, 241, 0.7);
+    border-bottom: 2px solid rgba(99, 102, 241, 0.7);
+    border-radius: 1px;
+  }
+
+  /* Chart tooltip */
+  .recharts-tooltip-wrapper .recharts-default-tooltip {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  .recharts-cartesian-grid line {
+    stroke: rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .recharts-text {
+    fill: #94A3B8 !important;
+    font-size: 12px !important;
+  }
+
+  /* Loading shimmer */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.07) 50%, rgba(255,255,255,0.03) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #6366F1 0%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow border on hover */
+  .glow-on-hover {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .glow-on-hover:hover {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.4);
+  }
+}
