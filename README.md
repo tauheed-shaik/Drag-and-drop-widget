@@ -539,7 +539,7 @@ Dashboard + Widgets created and linked to DataSource
 
 ## 📜 License
 
-MIT © 2025 InsightForge
+MIT © 2026 InsightForge
 
 ---
 
